@@ -34,5 +34,3 @@ class BookParser:
         return float(matches[1])
 
 
-
-
