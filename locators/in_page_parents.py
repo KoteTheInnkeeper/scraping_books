@@ -3,7 +3,8 @@ class PageLocator:
 
 
 class PageReg:
-    TOTAL_PAGES = '[0-9]+ of ([0-9])+'
+    TOTAL_PAGES = '[0-9]+ of ([0-9]+)'      # We will need the 'group one' of this one.
+    URL_DIVIDER = "[a-z\.\/\-\:]+"           # Splitting the url.
 
 
 class BookPageLocator:
