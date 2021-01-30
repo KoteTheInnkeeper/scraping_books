@@ -7,23 +7,31 @@ class BookParser:
     """
         Given an specific 'book' item in the page, this would make an object with the desired caracteristics.
     """
+
     def __init__(self, parent):
         self.parent = parent
 
     def __repr__(self):
-        return f"Book '{self.title}', rated {self.rating.lower()}"
+        return f"Book '{self.title}', rated {self.rating}"
 
     @property
-    def title(self):
+    def title(self) -> str:
         locator = BookLocator.TITLE
         return self.parent.select_one(locator).attrs['title']
 
     @property
-    def rating(self):
+    def rating(self) -> int:
+        RATINGS = {
+            'One': 1,
+            'Two': 2,
+            'Three': 3,
+            'Four': 4,
+            'Five': 5
+        }
         locator = BookLocator.RATING
         classes = self.parent.select_one(locator).attrs['class']
         star_rating = [e for e in classes if e != 'star-rating']
-        return star_rating[0]
+        return RATINGS[star_rating[0]]
 
     @property
     def price(self):
@@ -32,5 +40,7 @@ class BookParser:
         regex = AttributesReg.PRICE_NUMBER
         matches = re.findall(regex, price_string)
         return float(matches[1])
+
+
 
 

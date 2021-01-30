@@ -51,27 +51,23 @@ class PageGenerator:
 
 
 class Bookshelf:
-    def __init__(self):
+    def __init__(self, parsed_books: list):
         """
         Initializes this class as one for holding 'BookParser' objects in its property 'books', which is a list.
         """
-        self.books: list[BookParser] = []
-
-    def __add__(self, book: BookParser):
-        """
-        A class for adding elements to appending BookParser
-        :param book:
-        :return:
-        """
-        self.books.append(book)
+        self.content = parsed_books
 
     def __repr__(self):
         return f"<Bookshelf object with a list of books in it>"
 
     def __str__(self):
+        """
+            A string dunder to print all bookshelf's content when asked for printing a Bookshelf object.
+        :return:
+        """
         string_to_print = ''
-        for i, book in enumerate(self.books, start=1):
-            string_to_print += f'{i}) "{book.title}" (£{book.price}) was rated {book.rating.lower()} stars out of five.\n'
+        for i, book in enumerate(self.content, start=1):
+            string_to_print += f'{i}) "{book.title}" (£{book.price}) was rated {book.rating}/5.\n'
         return string_to_print
 
 

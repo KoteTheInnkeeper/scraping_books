@@ -7,15 +7,19 @@ initial_page = 'http://books.toscrape.com/catalogue/page-1.html'
 # is also scraped from the page.
 page_range = PageGenerator(initial_page)
 
-# Lets generate a Bookshelf object for holding the books in page.
-web_bookshelf = Bookshelf()
-
-
+print("Books are being scraped. Wait a minute!")
+# scraped_books
+scraped_books = []
 for page in page_range:
     books_in_this_page = BooksInPage(page)
     for book in books_in_this_page.books:
-        web_bookshelf + book
+        scraped_books.append(book)
 
-input("Books scraped!. Press enter to show them!\n")
+# Lets generate a Bookshelf object for holding the books in the entire website
+web_bookshelf = Bookshelf(scraped_books)
+
+input("Books scraped!. Press enter to show them!...\n")
 
 print(web_bookshelf)
+
+
