@@ -17,9 +17,6 @@ for page in page_range:
 
 # Lets generate a Bookshelf object for holding the books in the entire website
 web_bookshelf = Bookshelf(scraped_books)
-
-input("Books scraped!. Press enter to show them!...\n")
-
-print(web_bookshelf)
+print("Books scraped!")
 
 

@@ -14,6 +14,10 @@ class BookParser:
     def __repr__(self):
         return f"Book '{self.title}', rated {self.rating}"
 
+    def __str__(self):
+        string_star = 'stars' if self.rating > 1 else 'star'
+        return f"'{self.title}' was rated {self.rating} {string_star} out of five (£{self.price})."
+
     @property
     def title(self) -> str:
         locator = BookLocator.TITLE
@@ -38,9 +42,5 @@ class BookParser:
         locator = BookLocator.PRICE
         price_string = str(self.parent.select_one(locator).string)
         regex = AttributesReg.PRICE_NUMBER
-        matches = re.findall(regex, price_string)
-        return float(matches[1])
-
-
-
-
+        matches = re.search(regex, price_string)
+        return float(matches.group(1))

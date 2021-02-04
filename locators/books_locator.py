@@ -6,5 +6,5 @@ class BookLocator:
 
 
 class AttributesReg:
-    PRICE_NUMBER = "[0-9\.]+"   # This one should give us the price.
+    PRICE_NUMBER = "\\\\xc2\\\\xa3([0-9\.]*)"   # This one should give us the price.
 
