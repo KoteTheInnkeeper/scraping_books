@@ -1,17 +1,22 @@
-import logging, re, requests
+import re
+import requests
+import logging
 
 from bs4 import BeautifulSoup
 from locators.in_page_parents import PageReg, PageLocator, BookPageLocator
 from parser.book_parser import BookParser
 
+logger = logging.getLogger('scraping.all_books_page')
 
 class BooksInPage:
     def __init__(self, url: str):
         page_content = str(requests.get(url).content)
+        logger.info("Parsing page content with BeautifulSoup4.")
         self.soup = BeautifulSoup(page_content, 'html.parser')
 
     @property
     def books(self) -> list:
+        logger.info(f"Finding all books in the page using '{BookPageLocator.BOOK}'.")
         locator = BookPageLocator.BOOK
         books_tags = self.soup.select(locator)
         return [BookParser(e) for e in books_tags]

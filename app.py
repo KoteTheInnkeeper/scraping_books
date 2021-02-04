@@ -1,4 +1,18 @@
+import logging
+
 from pages.all_books_page import BooksInPage, PageGenerator, Bookshelf
+
+# Set the logger
+logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
+                    datefmt="%d-%m-%Y %H:%M:%S",
+                    level=logging.INFO,
+                    filename='logs.txt')
+
+logger = logging.getLogger('scraping')
+# Finished setting the logger.
+
+logger.info('Loading books list...')
+
 
 # This is the first page of the website when asked to show by pages
 initial_page = 'http://books.toscrape.com/catalogue/page-1.html'

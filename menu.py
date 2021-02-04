@@ -11,38 +11,31 @@ USER_CHOICE = """Enter one of the following
 COMMAND_PROMPT = "\nEnter your choice: "
 
 
-def print_best_books():
-    """
-        Sort the books in 'web_bookshelf' and will only show the top 5 books.
-    :return:
-    """
-    best_books = sorted(web_bookshelf.content, key=lambda x: (x.rating * -1, x.price))[:10]
-    for book in best_books:
-        print(book)
-
-
 def print_five_stars_books():
     """
         Prints only the five stars books.
     :return: None
     """
-    best_books = sorted(web_bookshelf.content, key=lambda x: x.price)
+    print("The 20 best rated books are shown below: ")
+    best_books = sorted(web_bookshelf.content, key=lambda x: x.rating * -1)
     for book in best_books:
         if book.rating == 5:
             print(f"-> {book}")
 
 
 def print_cheapest_books():
-    print("The cheapest books are shown below:")
-    cheapest_books = sorted(web_bookshelf.content, key=lambda x: x.price * -1)
+    print("The 20 cheapest books are shown below:")
+    cheapest_books = sorted(web_bookshelf.content, key=lambda x: x.price)
     for book in cheapest_books:
         print(f"-> {book}")
 
 
+books_generator = (x for x in web_bookshelf.content)
 
-def look_next():
-    print("Not implemented yet.")
-    pass
+
+def get_next():
+    print("Next book in catalogue: ")
+    print(next(books_generator))
 
 
 def quit_program():
@@ -54,7 +47,7 @@ def main_menu():
     operations = {
         'b': print_five_stars_books,
         'c': print_cheapest_books,
-        'n': look_next,
+        'n': get_next,
         'q': quit_program
     }
     user_input = input(COMMAND_PROMPT).lower().strip()
