@@ -1,7 +1,7 @@
 import logging
 
 from pages.all_books_page import BooksInPage, PageGenerator, Bookshelf
-
+from time import time
 # Set the logger
 logging.basicConfig(format="%(asctime)s %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s",
                     datefmt="%d-%m-%Y %H:%M:%S",
@@ -22,6 +22,8 @@ initial_page = 'http://books.toscrape.com/catalogue/page-1.html'
 page_range = PageGenerator(initial_page)
 
 print("Books are being scraped. Wait a minute!")
+
+start = time()
 # scraped_books
 scraped_books = []
 for page in page_range:
@@ -31,6 +33,6 @@ for page in page_range:
 
 # Lets generate a Bookshelf object for holding the books in the entire website
 web_bookshelf = Bookshelf(scraped_books)
-print("Books scraped!")
+print("Books scraped! It took %.2f seconds to do so." %(time() - start))
 
 
