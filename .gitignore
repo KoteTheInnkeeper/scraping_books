@@ -1,2 +1,8 @@
 # Project exclude paths
 /venv/
+
+# File only interesting within a runtime
+/log.txt
+
+# Ignoring cache files
+*.pyc
